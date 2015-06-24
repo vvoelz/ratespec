@@ -1,0 +1,45 @@
+#####################################################################################
+#
+# Usage: sample_posterior.py datfile nsteps nRates timeUnit minrate maxrate outname
+#
+#    Will sample the posterior distribution of rate spectra (exp mixture) models using L2-norm regularization (ridge regression, default)
+# 
+#    datfile -   time series   
+#    nsteps -    number of steps to perform MC sampling
+#    nRates -    number of rates (exp-spaced) to use in the spectrum
+#    timeUnit -  the unit (in sec) of the time axis of the data
+#    minrate -  the minimum rate (in 1/s) to consider
+#    maxrate -  the maximum rate to consider
+#    outname -   Will write files:
+#
+#      'outname.nRates*.L*.ratespec.dat'
+#      'outname.nRates*.L*.mctraj.dat'
+#      'outname.nRates*.L*.Atraj.dat'
+#
+#    FLAGS 
+#    -s          Standarize the data
+#    -t          Scale the data
+#    -lasso      Use L1-norm regularization (the lasso)
+#    -enet [rho] Use a combination L1- an L2-norm regularization (the ElasticNet), with mixture 0 < rho < 1.
+#    -noplot     Skip the final plot
+#
+#
+#    Example: >> ./sample_posterior.py data/triexp.sigma0.025.dat 100 100 1.0e-6 1.0 1.e9 triexp.sigma0.025 -t
+#    Example: >> ./sample_posterior.py data/triexp.sigma0.050.dat 100 100 1.0e-6 1.0 1.e9 triexp.sigma0.050 -t -enet 0.5
+#
+#####################################################################################
+
+# run these for a quick test
+#python ../../scripts/sample_posterior.py data/Fig3upperWW.dat 100 100 1.0e-6 1.0 1.e8 data/Fig3upperWW.ridge -t 
+#python ../../scripts/sample_posterior.py data/Fig3lowerWW.dat 100 100 1.0e-6 1.0 1.e8 data/Fig3lowerWW.ridge -t
+
+python ../../scripts/sample_posterior.py data/Fig3lowerWW.dat 100 100 1.0e-6 1.0 1.e8 data/Fig3lowerWW.enet.noscale -enet 0.9 
+python ../../scripts/sample_posterior.py data/Fig3upperWW.dat 100 100 1.0e-6 1.0 1.e8 data/Fig3upperWW.enet.noscale -enet 0.9 
+
+python ../../scripts/sample_posterior.py data/Fig3lowerWW.dat 100 100 1.0e-6 1.0 1.e8 data/Fig3lowerWW.lasso.noscale -lasso 
+python ../../scripts/sample_posterior.py data/Fig3upperWW.dat 100 100 1.0e-6 1.0 1.e8 data/Fig3upperWW.lasso.noscale -lasso
+
+
+# run these for full production
+
+

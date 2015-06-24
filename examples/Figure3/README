@@ -1,0 +1,7 @@
+To recreate Figure 3 in Voelz and Pande, do the following:
+
+1. Execute the commands in ./production (uncomment lines to do a full production run, rather than a quick test)
+>> ./production
+
+2. Render the figure as a PDF 
+>> python plotFigure3.pdf

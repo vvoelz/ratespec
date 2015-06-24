@@ -1,0 +1,1 @@
+python ../../scripts/compute_spectrum.py data/triexp.sigma0.025.dat 100 2.5 1.0e-6 1.0 1.0e9 -t

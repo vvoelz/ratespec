@@ -1,0 +1,42 @@
+#===============================================================================
+# README for ratespec 
+#
+# A python class library for computing rate spectra
+#
+# Please reference
+# Voelz VA and Pande VS. 2011. "Calculation of Rate Spectra from Noisy Time Series Data"
+# Proteins: Structure, Function and Bioinformatics, accepted (2011). 
+#
+# Written Feb 2011 by Vincent A. Voelz <vvoelz@stanford.edu>
+# Pande group, Dept. of Chemistry, Stanford University
+#
+# Copyright (C) 2011  Stanford University
+
+SVN REPOSITORY
+
+For access to the SVN repository, please see: https://simtk.org/home/ratespec/
+
+If you have permissions, you can check out this repository from svn using:
+>>  svn checkout --username user https://simtk.org/svn/ratespec
+
+INSTALLATION
+
+    REQUIRED PATHNAMES
+
+    Please put the ratespec directory in your PYTHONPATH environment variable
+
+    REQUIRED PACKAGES
+
+    * You will need a working installation of scipy and numpy (see http://www.scipy.org/ )
+    * For PlottingTools.py, an installation of matplotlib is required (see http://matplotlib.sourceforge.net/ )
+    * For computing rate spectra via the Lasso (L1-norm regularization), the scikits-learn package of
+      machine learning tools is needed (see http://scikit-learn.sourceforge.net/ )
+
+    NOTE: all of these packaged can be installed together using the Enthought Python Distribution, which
+    is *highly* recommended: http://www.enthought.com/products/epd.php
+
+
+---------------
+Last Updated: September 14, 2011
+--Vincent Voelz
+

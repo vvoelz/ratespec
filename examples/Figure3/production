@@ -1,0 +1,50 @@
+#####################################################################################
+#
+# Usage: sample_posterior.py datfile nsteps nRates timeUnit minrate maxrate outname
+#
+#    Will sample the posterior distribution of rate spectra (exp mixture) models using L2-norm regularization (ridge regression, default)
+# 
+#    datfile -   time series   
+#    nsteps -    number of steps to perform MC sampling
+#    nRates -    number of rates (exp-spaced) to use in the spectrum
+#    timeUnit -  the unit (in sec) of the time axis of the data
+#    minrate -  the minimum rate (in 1/s) to consider
+#    maxrate -  the maximum rate to consider
+#    outname -   Will write files:
+#
+#      'outname.nRates*.L*.ratespec.dat'
+#      'outname.nRates*.L*.mctraj.dat'
+#      'outname.nRates*.L*.Atraj.dat'
+#
+#    FLAGS 
+#    -s          Standarize the data
+#    -t          Scale the data
+#    -lasso      Use L1-norm regularization (the lasso)
+#    -enet [rho] Use a combination L1- an L2-norm regularization (the ElasticNet), with mixture 0 < rho < 1.
+#    -noplot     Skip the final plot
+#
+#
+#    Example: >> ./sample_posterior.py data/triexp.sigma0.025.dat 100 100 1.0e-6 1.0 1.e9 triexp.sigma0.025 -t
+#    Example: >> ./sample_posterior.py data/triexp.sigma0.050.dat 100 100 1.0e-6 1.0 1.e9 triexp.sigma0.050 -t -enet 0.5
+#
+#####################################################################################
+
+# run these for a quick test
+python ../../scripts/sample_posterior.py data/stretched.sigma0.0500.beta0.30.dat 1000 100 1.0e-6 1.0e-3 1.0e3 data/stretched.sigma0.0500.beta0.30.dat  
+python ../../scripts/sample_posterior.py data/stretched.sigma0.0500.beta0.50.dat 100 100 1.0e-6 1.0e-3 1.0e3 data/stretched.sigma0.0500.beta0.50.dat 
+python ../../scripts/sample_posterior.py data/stretched.sigma0.0500.beta0.70.dat 100 100 1.0e-6 1.0e-3 1.0e3 data/stretched.sigma0.0500.beta0.70.dat
+python ../../scripts/sample_posterior.py data/stretched.sigma0.0500.beta0.90.dat 100 100 1.0e-6 1.0e-3 1.0e3 data/stretched.sigma0.0500.beta0.90.dat 
+
+python ../../scripts/sample_posterior.py data/stretched.sigma0.0500.beta0.30.dat 100 100 1.0e-6 1.0e-3 1.0e3 data/stretched.sigma0.0500.beta0.30.dat -lasso
+python ../../scripts/sample_posterior.py data/stretched.sigma0.0500.beta0.50.dat 100 100 1.0e-6 1.0e-3 1.0e3 data/stretched.sigma0.0500.beta0.50.dat -lasso
+python ../../scripts/sample_posterior.py data/stretched.sigma0.0500.beta0.70.dat 100 100 1.0e-6 1.0e-3 1.0e3 data/stretched.sigma0.0500.beta0.70.dat -lasso
+python ../../scripts/sample_posterior.py data/stretched.sigma0.0500.beta0.90.dat 100 100 1.0e-6 1.0e-3 1.0e3 data/stretched.sigma0.0500.beta0.90.dat -lasso
+
+python ../../scripts/sample_posterior.py data/stretched.sigma0.0500.beta0.30.dat 100 100 1.0e-6 1.0e-3 1.0e3 data/stretched.sigma0.0500.beta0.30.dat -enet 0.5
+python ../../scripts/sample_posterior.py data/stretched.sigma0.0500.beta0.50.dat 100 100 1.0e-6 1.0e-3 1.0e3 data/stretched.sigma0.0500.beta0.50.dat -enet 0.5
+python ../../scripts/sample_posterior.py data/stretched.sigma0.0500.beta0.70.dat 100 100 1.0e-6 1.0e-3 1.0e3 data/stretched.sigma0.0500.beta0.70.dat -enet 0.5
+python ../../scripts/sample_posterior.py data/stretched.sigma0.0500.beta0.90.dat 100 100 1.0e-6 1.0e-3 1.0e3 data/stretched.sigma0.0500.beta0.90.dat -enet 0.5
+
+# run these for full production
+
+
